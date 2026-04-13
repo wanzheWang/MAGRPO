@@ -1,0 +1,76 @@
+# --- Defaults ---
+
+# --- pymarl options ---
+runner: "episode" # Runs 1 env for an episode
+mac: "basic_mac" # Basic controller
+env: "sc2" # Environment name
+common_reward: True  # Run experiment with common reward setup
+reward_scalarisation: "sum"  # How to aggregate rewards to single common reward (only used if common_reward is True)
+env_args: {} # Arguments for the environment
+batch_size_run: 1 # Number of environments to run in parallel
+test_nepisode: 20 # Number of episodes to test for
+test_interval: 2000 # Test after {} timesteps have passed
+test_start_t: 0 # Delay testing until this many timesteps have passed
+test_greedy: True # Use greedy evaluation (if False, will set epsilon floor to 0
+log_interval: 2000 # Log summary of stats after every {} timesteps
+runner_log_interval: 2000 # Log runner stats (not test stats) every {} timesteps
+learner_log_interval: 2000 # Log training stats every {} timesteps
+t_max: 10000 # Stop running after this many timesteps
+use_cuda: True # Use gpu by default unless it isn't available
+buffer_cpu_only: True # If true we won't keep all of the replay buffer in vram
+
+# --- Logging options ---
+use_tensorboard: False # Log results to tensorboard
+use_wandb: False # Log results to W&B
+wandb_team: null # W&B team name
+wandb_project: null # W&B project name
+wandb_mode: "offline" # W&B mode (online/offline)
+wandb_save_model: False # Save models to W&B (only done if use_wandb is True and save_model is True)
+save_model: False # Save the models to disk
+save_model_interval: 50000 # Save models after this many timesteps
+checkpoint_path: "" # Load a checkpoint from this path
+evaluate: False # Evaluate model for test_nepisode episodes and quit (no training)
+render: False # Render the environment when evaluating (only when evaluate == True)
+load_step: 0 # Load model trained on this many timesteps (0 if choose max possible)
+save_replay: False # Saving the replay of the model loaded from checkpoint_path
+local_results_path: "results" # Path for local results
+
+# --- Export options ---
+export_best_point: False # Export best return point state/obs/action to disk
+export_best_point_mode: "train" # train, test, both
+export_best_point_dir: "results/exports"
+export_best_point_violation_tol: 1e-6
+
+# --- RL hyperparameters ---
+gamma: 0.99
+batch_size: 32 # Number of episodes to train on
+buffer_size: 32 # Size of the replay buffer
+lr: 0.0005 # Learning rate for agents
+adaptive_lr: True # Enable adaptive learning rate scheduler
+adaptive_lr_type: "plateau" # plateau | cosine | none
+adaptive_lr_mode: "min" # Used by plateau scheduler
+adaptive_lr_factor: 0.5 # Multiplicative factor for lr reduction
+adaptive_lr_patience: 200 # Number of train steps with no improvement before reducing lr
+adaptive_lr_threshold: 0.0001 # Minimum change to qualify as an improvement
+adaptive_lr_cooldown: 0 # Number of steps to wait before resuming normal operation
+adaptive_lr_min: 0.000001 # Lower bound for lr
+adaptive_lr_eps: 0.00000001 # Minimal decay applied by scheduler
+adaptive_lr_t_max: null # Used by cosine scheduler; defaults to t_max
+adaptive_lr_step_interval: 1 # Call scheduler every N optimiser updates
+adaptive_lr_warmup_steps: 0 # Skip scheduler updates for the first N optimiser updates
+adaptive_lr_metric_ema_beta: 0.0 # Optional EMA smoothing for plateau metric (0 disables)
+optim_alpha: 0.99 # RMSProp alpha
+optim_eps: 0.00001 # RMSProp epsilon
+grad_norm_clip: 10 # Reduce magnitude of gradients above this L2 norm
+add_value_last_step: True
+
+# --- Agent parameters ---
+agent: "rnn" # Default rnn agent
+hidden_dim: 64 # Size of hidden state for default rnn agent
+obs_agent_id: True # Include the agent's one_hot id in the observation
+obs_last_action: True # Include the agent's last action (one_hot) in the observation
+
+# --- Experiment running params ---
+repeat_id: 1
+label: "default_label"
+hypergroup: null

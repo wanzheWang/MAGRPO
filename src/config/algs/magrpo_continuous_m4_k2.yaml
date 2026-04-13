@@ -1,0 +1,76 @@
+# --- Continuous MAGRPO (m=4, k=2) ---
+
+runner: "parallel"
+mac: "gaussian_mac"
+agent: "rnn_gaussian"
+learner: "magrpo_continuous_learner"
+critic_type: "cv_critic"
+
+buffer_size: 64
+batch_size_run: 16
+batch_size: 16
+mini_batch_size: 8
+
+target_update_interval_or_tau: 0.01
+
+lr: 0.00002
+adaptive_lr: True
+adaptive_lr_type: "plateau"
+adaptive_lr_factor: 0.5
+adaptive_lr_patience: 320
+adaptive_lr_min: 0.000005
+adaptive_lr_step_interval: 40
+adaptive_lr_warmup_steps: 800
+hidden_dim: 256
+grad_norm_clip: 10
+
+obs_agent_id: True
+obs_last_action: False
+obs_individual_obs: False
+
+env_args:
+  k_users: 2
+  m_antennas: 4
+  time_limit: 5
+  user_angle_range_deg:
+    - [80.0, 90.0]
+    - [90.0, 100.0]
+  terminal_reward_only: False
+  enforce_spacing_by_resample: True
+  spacing_resample_max_tries: 512
+
+use_rnn: False
+standardise_returns: False
+standardise_rewards: True
+q_nstep: 5
+
+epochs: 2
+eps_clip: 0.2
+gae_lambda: 0.95
+norm_advantage: True
+adv_norm_eps: 1e-8
+entropy_coef: 0.003
+entropy_coef_end: 0.0003
+entropy_anneal_steps: 15000000
+
+# MAGRPO params
+group_norm_eps: 1e-8
+grpo_warmup_steps: 1000000
+grpo_group_size: 16
+grpo_kl_coef: 0.0001
+grpo_gamma: 0.99
+log_ratio_clip: 2.0
+grpo_kl_term_clip: 5000.0
+max_abs_pg_loss_for_update: 5000.0
+max_grad_norm_for_update: 1000000.0
+
+# Gaussian policy params
+init_log_std: -2.0
+log_std_min: -20.0
+log_std_max: -1.0
+log_prob_eps: 1e-6
+
+name: "magrpo_continuous_m4_k2"
+seed: 1
+
+t_max: 8000000

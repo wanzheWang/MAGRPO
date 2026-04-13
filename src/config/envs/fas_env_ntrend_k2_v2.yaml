@@ -1,0 +1,67 @@
+env: "gymma"
+seed: 1
+
+env_args:
+  key: "fas_env-v0"
+  time_limit: 5
+  pretrained_wrapper: null
+  n_bs: 2
+  k_users: 2
+  m_antennas: 4
+  user_weights: 1.0
+  bs_height: 10.0
+  user_height: 1.8
+  user_dist_bounds: [3.5, 5.5]
+  user_fixed_angles_deg: null
+  user_angle_range_deg:
+    - [80.0, 90.0]
+    - [90.0, 100.0]
+  fixed_positions_on_reset: True
+  user_position_resample_interval: 1
+  enforce_spacing_by_resample: True
+  spacing_resample_max_tries: 512
+  shared_user_positions: False
+  terminal_reward_only: False
+  action_mode: "continuous"
+  action_bound: 1.0
+  obs_mode: "paper"
+  pos_action_mode: "absolute"
+  p_max: 1.0
+  d_min: 0.0200
+  area_bounds: [-0.25, 0.25, -0.25, 0.25]
+  bs_center_distance: 35.0
+  beta_penalty: 200.0
+  reward_mode: "paper"
+  beta_penalty_mode: "static"
+  beta_lagrange_lr: 0.05
+  beta_lagrange_target: 0.0
+  beta_lagrange_min: 0.1
+  beta_lagrange_max: 50.0
+  interference_scale: 0.05
+  noise_var: 7.94e-13
+  lambda_c: 0.0545454545
+  resample_fading_each_step: False
+  normalize_w: True
+  num_beam_actions: 8
+  num_pos_actions: 5
+  delta_u_step: 0.05
+  l_paths: 1
+  zeta_var: 1e-5
+  zeta_resample_interval: 0
+  path_loss_exp: 2.4
+  path_loss_exp_intra: 2.4
+  path_loss_exp_inter: 5.5
+  fixed_channel_on_reset: False
+  shared_fixed_aoa_aod: False
+  fixed_aoa_aod_on_reset: True
+  channel_seed: 1
+  user_position_seed: 1
+
+test_greedy: True
+use_tensorboard: True
+test_nepisode: 100
+test_interval: 2000
+log_interval: 2000
+runner_log_interval: 2000
+learner_log_interval: 2000
+t_max: 2050000
