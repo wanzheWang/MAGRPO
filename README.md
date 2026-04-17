@@ -137,15 +137,6 @@ This logic is implemented in `src/learners/magrpo_continuous_learner.py`.
 
 This public release is centered on the MAGRPO/FAS workflow described in the paper. The repository still contains inherited EPyMARL modules such as controllers, runners, critics, and utility code because they are part of the training stack used here.
 
-## Citation
-
-If you use this repository in academic work, please cite the MAGRPO paper:
-
-```text
-Wanzhe Wang, Tong Zhang, Hao Xu, Shuai Wang, Rui Wang, and Kai-Kit Wong,
-"MAGRPO: Accelerated MARL Training for Fluid Antenna-Assisted Wireless Network Optimization."
-```
-
 ## License and Acknowledgement
 
 This repository includes code derived from EPyMARL and PyMARL. See `LICENSE` and `NOTICE` for the applicable license and attribution information.
